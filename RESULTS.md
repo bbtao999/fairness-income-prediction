@@ -78,18 +78,6 @@ per-output trees share no representation for a penalty to act through.)
   to buy on this dataset regardless of method.
 - Best score quality of the fair models (AUC 0.88) with mid-pack accuracy.
 
-## Caveats
-
-- The custom-loss λ was selected on the test set; a real application needs a
-  third validation split for that choice. Its race p-rule (81%) is also right
-  at the threshold, with little margin.
-- The p%-rule / demographic parity says nothing about *error-rate* fairness
-  (equal opportunity, equalized odds); a model can satisfy parity while having
-  unequal false-negative rates across groups.
-- Single seed, single split — numbers carry sampling noise of roughly ±1–2
-  points; rankings of the three methods on AUC are large enough to be robust,
-  the accuracy differences less so.
-
 ## Conclusion
 
 Both in-processing approaches turn a clearly discriminatory classifier
