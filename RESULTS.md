@@ -45,9 +45,7 @@ prediction*. Classifier loss: `BCE(y, ŷ) − λ · BCE_adv(Z, Ẑ)`, λ = [130,
 - Baseline: adversary detects sex from predictions alone with AUC 0.70.
 - Final: adversary AUC ≈ 0.51–0.52 for both attributes — predictions carry
   essentially no group information. Group score distributions nearly coincide.
-- Trajectory: sex fairness achieved by ~epoch 40, race by ~epoch 70; the
-  classifier *recovers* some accuracy after epoch 90 while staying fair,
-  suggesting it re-learns the task on non-proxy features.
+
 - Cost: −0.09 AUC, −4.1 accuracy points versus its own baseline.
 
 
