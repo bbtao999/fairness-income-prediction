@@ -94,21 +94,6 @@ per-output trees share no representation for a penalty to act through.)
 
 Both in-processing approaches turn a clearly discriminatory classifier
 (p%-rules 34–47%) into one satisfying the four-fifths rule, at single-digit
-accuracy cost. **There is no dominant method — the right choice depends on
-what the predictions are used for:**
-
-- **Need calibrated scores/rankings** (risk pricing, triage, top-k selection):
-  the **adversarial NN** (comfortable fairness margins, AUC 0.82) or the
-  **LightGBM custom loss** (best AUC 0.88, but fragile tuning, thin race margin).
-- **Need only accept/reject decisions with minimal engineering:** the
-  **fairlearn reduction** — best accuracy retention, model-agnostic,
-  a declarative constraint instead of a hand-tuned λ, and a convergence
-  guarantee. Its ruined score distribution is irrelevant if scores are
-  never consumed.
-- **Fairness is the priority:** the adversarial NN achieved the strongest and
-  most balanced result (90%/89%) and directly certifies, via the adversary,
-  that predictions carry no recoverable group information.
-
-The consistent cross-method finding: on this data, *sex* fairness is cheap and
+accuracy cost. The consistent cross-method finding: on this data, *sex* fairness is cheap and
 *race* fairness is expensive — driven by class imbalance, not method choice.
 
