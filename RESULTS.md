@@ -33,10 +33,7 @@ evaluated with the same metrics on the same held-out test set.*
 | **Fair GBT (reduction)** | 0.76 | 84.7% | **82%** | **88%** |
 | **LightGBM custom loss** | **0.88** | 83.7% | **81%** | **98%** |
 
-All three debiasing methods clear the 80% bar on both attributes. Raw metric
-files: [training_metrics.csv](training_metrics.csv) (per-epoch NN),
-[tree_metrics.csv](tree_metrics.csv), [lgbm_customloss_metrics.csv](lgbm_customloss_metrics.csv).
-
+All three debiasing methods clear the 80% bar on both attributes.
 ## Method 1: Adversarial neural network
 
 A 3-hidden-layer classifier (32 units, ReLU, dropout 0.2) plays a zero-sum game
