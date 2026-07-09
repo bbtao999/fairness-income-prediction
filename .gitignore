@@ -11,6 +11,7 @@
 
 # Results write-up
 !RESULTS.md
+!README.md
 
 # Scripts
 !*.py
@@ -23,3 +24,4 @@
 # Exclude helper/entry scratch files
 main.py
 nb_to_py.py
+fairness-tree.py
