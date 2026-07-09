@@ -31,6 +31,7 @@ evaluated with the same metrics on the same held-out test set.*
 | **LightGBM custom loss** | **0.88** | 83.7% | **81%** | **98%** |
 
 All three debiasing methods clear the 80% bar on both attributes.
+
 ## Method 1: Adversarial neural network
 
 A 3-hidden-layer classifier (32 units, ReLU, dropout 0.2) plays a zero-sum game
@@ -40,7 +41,6 @@ prediction*. Classifier loss: `BCE(y, ŷ) − λ · BCE_adv(Z, Ẑ)`, λ = [130,
 
 ![biased baseline](images/biased_training.png)
 ![fair final](images/torch_00000164.png)
-![training trajectories](images/training_metrics.png)
 
 - Baseline: adversary detects sex from predictions alone with AUC 0.70.
 - Final: adversary AUC ≈ 0.51–0.52 for both attributes — predictions carry
