@@ -69,14 +69,7 @@ per-output trees share no representation for a penalty to act through.)
 ![lgbm baseline](images/lgbm_biased.png)
 ![lgbm fair](images/lgbm_fair.png)
 
-- λ sweep (in `lgbm_customloss_metrics.csv`): fairness improves smoothly until
-  λ ≈ [1e6, 2.5e5] (race, sex) satisfies both rules, then training *collapses*
-  at λ ≈ 1.5e6 — accuracy and fairness both fall off a cliff.
-- Race required ~4× the penalty weight of sex — the same ratio the adversarial
-  net needed (λ 130 vs 30). With 90/10 race imbalance, the minority group
-  contributes weak gradient signal, so race fairness is structurally harder
-  to buy on this dataset regardless of method.
-- Best score quality of the fair models (AUC 0.88) with mid-pack accuracy.
+
 
 ## Conclusion
 
