@@ -1,6 +1,6 @@
 # Results: Fairness in Income Prediction — Three Debiasing Methods Compared
 
-*CAll models trained on the same data, split, and seed; all
+*All models trained on the same data, split, and seed; all
 evaluated with the same metrics on the same held-out test set.*
 
 ## Setup
