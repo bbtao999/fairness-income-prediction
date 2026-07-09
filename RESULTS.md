@@ -111,5 +111,4 @@ what the predictions are used for:**
 
 The consistent cross-method finding: on this data, *sex* fairness is cheap and
 *race* fairness is expensive — driven by class imbalance, not method choice.
-Any deployment should therefore monitor the race p-rule specifically, as it is
-the binding constraint.
+
