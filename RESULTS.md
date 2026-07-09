@@ -1,6 +1,6 @@
 # Results: Fairness in Income Prediction — Three Debiasing Methods Compared
 
-*All models trained on the same data, split, and seed; all
+*The models are trained on the same data, split, and seed; all
 evaluated with the same metrics on the same held-out test set.*
 
 ## Setup
@@ -19,7 +19,6 @@ evaluated with the same metrics on the same held-out test set.*
 | Script | Method |
 |---|---|
 | [fairness-in-torch.py](fairness-in-torch.py) | Neural net + adversarial debiasing (PyTorch) |
-| [fairness-tree.py](fairness-tree.py) | Gradient-boosted trees + fairlearn `ExponentiatedGradient` reduction |
 | [fairness-lgbm-customloss.py](fairness-lgbm-customloss.py) | LightGBM with a custom fairness-penalized objective |
 
 ## Headline comparison
@@ -27,10 +26,8 @@ evaluated with the same metrics on the same held-out test set.*
 | Model | ROC AUC | Accuracy | p%-rule race | p%-rule sex |
 |---|---|---|---|---|
 | NN baseline (biased) | 0.91 | 85.1% | 45% | 36% |
-| GBT baseline (biased) | 0.92 | 86.9% | 47% | 34% |
 | LightGBM baseline (biased) | 0.92 | 86.7% | 45% | 35% |
 | **Adversarial NN** | 0.82 | 81.0% | **90%** | **89%** |
-| **Fair GBT (reduction)** | 0.76 | 84.7% | **82%** | **88%** |
 | **LightGBM custom loss** | **0.88** | 83.7% | **81%** | **98%** |
 
 All three debiasing methods clear the 80% bar on both attributes.
@@ -53,24 +50,8 @@ prediction*. Classifier loss: `BCE(y, ŷ) − λ · BCE_adv(Z, Ẑ)`, λ = [130,
   suggesting it re-learns the task on non-proxy features.
 - Cost: −0.09 AUC, −4.1 accuracy points versus its own baseline.
 
-## Method 2: Fair GBT — fairlearn ExponentiatedGradient reduction
 
-`HistGradientBoostingClassifier` wrapped in fairlearn's `ExponentiatedGradient`
-with a `DemographicParity` constraint on race × sex jointly. The tree model is
-never modified; fairlearn repeatedly reweights the training data, refits, and
-returns a randomized committee of models.
-
-![tree baseline](images/tree_biased.png)
-![tree fair](images/tree_fair.png)
-
-- Demographic-parity difference drops from 0.120/0.177 (race/sex) to
-  0.030/0.021.
-- Best accuracy retention of the three (−2.2 points), and essentially no tuning.
-- But the committee's vote-share scores pile up near 0 and 1, so *ranking*
-  quality collapses: AUC 0.92 → 0.76. Fine for accept/reject decisions,
-  poor wherever the score itself matters.
-
-## Method 3: LightGBM with a fairness-penalized custom objective
+## Method 2: LightGBM with a fairness-penalized custom objective
 
 The corrected version of the "two goals in one objective" note: a single-output
 LightGBM whose per-boosting-step loss is
@@ -111,7 +92,7 @@ per-output trees share no representation for a penalty to act through.)
 
 ## Conclusion
 
-All three in-processing approaches turn a clearly discriminatory classifier
+Both in-processing approaches turn a clearly discriminatory classifier
 (p%-rules 34–47%) into one satisfying the four-fifths rule, at single-digit
 accuracy cost. **There is no dominant method — the right choice depends on
 what the predictions are used for:**
