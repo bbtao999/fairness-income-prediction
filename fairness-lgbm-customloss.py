@@ -1,10 +1,7 @@
 
 # In-processing fairness for gradient-boosted trees via a CUSTOM OBJECTIVE.
 #
-# This is the corrected version of the "predict two goals in one objective"
-# idea from the Notion notes. Instead of a second output head that tries to
-# predict the sensitive attributes badly (which has no effect in trees, since
-# boosted trees share no representation between outputs), we keep a SINGLE
+# We keep a SINGLE
 # output (income) and put the fairness pressure directly into the loss:
 #
 #   Loss = BCE(y, p) + sum_k lambda_k * ( mean(p | Z_k=1) - mean(p | Z_k=0) )^2
